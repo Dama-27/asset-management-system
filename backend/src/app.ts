@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import healthRoutes from './modules/health/health.routes';
 
 // Load environment variables from .env
 dotenv.config();
@@ -15,6 +16,9 @@ app.use(cors({
   credentials: true,
 }));
 app.use(express.json());
+
+// Routes
+app.use('/api/v1', healthRoutes); 
 
 // Root Welcome Endpoint
 app.get('/', (_req: Request, res: Response) => {
