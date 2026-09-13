@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import healthRoutes from './modules/health/health.routes';
+import { connectDB } from './config/database';
 
 // Load environment variables from .env
 dotenv.config();
@@ -32,5 +33,5 @@ app.get('/', (_req: Request, res: Response) => {
 // Start HTTP Server & Connect to DB
 app.listen(PORT, () => {
   console.log(`[Server] Express server running on http://localhost:${PORT}`);
-//   connectDB();
+  connectDB();
 });
