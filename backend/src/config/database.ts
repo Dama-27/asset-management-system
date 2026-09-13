@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
+import { config } from './env';
 
 export const connectDB = async (): Promise<void> => {
-  const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/asset-management';
+  const mongoUri = config.mongodbUri|| 'mongodb://localhost:27017/asset-management';
 
   try {
     const conn = await mongoose.connect(mongoUri, {

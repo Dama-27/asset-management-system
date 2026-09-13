@@ -3,13 +3,14 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import healthRoutes from './modules/health/health.routes';
 import { connectDB } from './config/database';
+import { config } from './config/env';
 
 // Load environment variables from .env
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
-const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173';
+const PORT = config.port || 5000;
+const CLIENT_URL = config.clientUrl || 'http://localhost:5173';
 
 // Core Middleware
 app.use(cors({

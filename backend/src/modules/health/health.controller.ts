@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
+import { config } from '../../config/env';
 
 export const getHealth = (_req: Request, res: Response): void => {
   const dbState = mongoose.connection.readyState;
@@ -17,7 +18,7 @@ export const getHealth = (_req: Request, res: Response): void => {
       status: 'ok',
       timestamp: new Date().toISOString(),
       uptime: process.uptime(),
-      environment: process.env.NODE_ENV || 'development',
+      environment: config.nodeEnv|| 'development',
       database: dbStatus[dbState] || 'unknown',
     },
   });
